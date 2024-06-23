@@ -157,11 +157,11 @@ global.mqttClient = mqtt.connect(`mqtt://${config.mqtt.host}`, {
                     global.logger.log('info', {message: `${d}`});
                 });
             });
-                
+
             req.on('error', error => {
                 global.logger.log('error', {message: `${error}`});
             });
-            
+
             let {id, capabilities, properties} = ldevice.getState();
             req.write(JSON.stringify({
                 "ts": Math.floor(Date.now() / 1000),
