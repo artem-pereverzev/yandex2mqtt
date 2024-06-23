@@ -92,15 +92,8 @@ app.post('/provider/v1.0/user/devices/query', r_user.query);
 app.post('/provider/v1.0/user/devices/action', r_user.action);
 app.post('/provider/v1.0/user/unlink', r_user.unlink);
 
-/* create https server */
-const privateKey = fs.readFileSync(config.https.privateKey, 'utf8');
-const certificate = fs.readFileSync(config.https.certificate, 'utf8');
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-};
-const httpsServer = https.createServer(credentials, app);
-httpsServer.listen(config.https.port);
+/* create http server */
+app.listen(config.http.port);
 
 /* cache devices from config to global */
 global.devices = [];
